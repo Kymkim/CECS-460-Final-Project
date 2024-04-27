@@ -1,0 +1,372 @@
+/************************************************************************/
+/*																		*/
+/*	video_demo.c	--	ZYBO Video demonstration 						*/
+/*																		*/
+/************************************************************************/
+/*	Author: Sam Bobrowicz												*/
+/*	Copyright 2015, Digilent Inc.										*/
+/************************************************************************/
+/*  Module Description: 												*/
+/*																		*/
+/*		This file contains code for running a demonstration of the		*/
+/*		Video input and output capabilities on the ZYBO. It is a good	*/
+/*		example of how to properly use the display_ctrl and				*/
+/*		video_capture drivers.											*/
+/*																		*/
+/*																		*/
+/************************************************************************/
+/*  Revision History:													*/
+/* 																		*/
+/*		11/25/2015(SamB): Created										*/
+/*																		*/
+/************************************************************************/
+
+/* ------------------------------------------------------------ */
+/*				Include File Definitions						*/
+/* ------------------------------------------------------------ */
+
+#include "video_demo.h"
+#include "video_capture/video_capture.h"
+#include "display_ctrl/display_ctrl.h"
+#include "intc/intc.h"
+#include <stdio.h>
+#include "xuartps.h"
+#include "math.h"
+#include <ctype.h>
+#include <stdlib.h>
+#include "xil_types.h"
+#include "xil_cache.h"
+#include "timer_ps/timer_ps.h"
+#include "xparameters.h"
+
+/*
+ * XPAR redefines
+ */
+#define DYNCLK_BASEADDR 		XPAR_AXI_DYNCLK_0_BASEADDR
+#define VDMA_ID 				XPAR_AXIVDMA_0_DEVICE_ID
+#define HDMI_OUT_VTC_ID 		XPAR_V_TC_OUT_DEVICE_ID
+#define HDMI_IN_VTC_ID 			XPAR_V_TC_IN_DEVICE_ID
+#define HDMI_IN_GPIO_ID 		XPAR_AXI_GPIO_VIDEO_DEVICE_ID
+#define HDMI_IN_VTC_IRPT_ID 	XPAR_FABRIC_V_TC_IN_IRQ_INTR
+#define HDMI_IN_GPIO_IRPT_ID 	XPAR_FABRIC_AXI_GPIO_VIDEO_IP2INTC_IRPT_INTR
+#define SCU_TIMER_ID 			XPAR_SCUTIMER_DEVICE_ID
+#define UART_BASEADDR 			XPAR_PS7_UART_1_BASEADDR
+
+/* ------------------------------------------------------------ */
+/*				Global Variables								*/
+/* ------------------------------------------------------------ */
+
+/*
+ * Display and Video Driver structs
+ */
+DisplayCtrl dispCtrl;
+XAxiVdma vdma;
+VideoCapture videoCapt;
+INTC intc;
+char fRefresh; //flag used to trigger a refresh of the Menu on video detect
+
+/*
+ * Framebuffers for video data
+ */
+u8 frameBuf[DISPLAY_NUM_FRAMES][DEMO_MAX_FRAME] __attribute__((aligned(0x20)));
+u8 *pFrames[DISPLAY_NUM_FRAMES]; //array of pointers to the frame buffers
+
+/*
+ * Interrupt vector table
+ */
+const ivt_t ivt[] = {
+	videoGpioIvt(HDMI_IN_GPIO_IRPT_ID, &videoCapt),
+	videoVtcIvt(HDMI_IN_VTC_IRPT_ID, &(videoCapt.vtc))
+};
+
+/* ------------------------------------------------------------ */
+/*				Procedure Definitions							*/
+/* ------------------------------------------------------------ */
+
+int main(void)
+{
+	Initialize();
+
+	Run();
+
+	return 0;
+}
+
+
+void Initialize()
+{
+	int Status;
+	XAxiVdma_Config *vdmaConfig;
+	int i;
+
+	/*
+	 * Initialize an array of pointers to the 3 frame buffers
+	 */
+	for (i = 0; i < DISPLAY_NUM_FRAMES; i++)
+	{
+		pFrames[i] = frameBuf[i];
+	}
+
+	/*
+	 * Initialize a timer used for a simple delay
+	 */
+	TimerInitialize(SCU_TIMER_ID);
+
+	/*
+	 * Initialize VDMA driver
+	 */
+	vdmaConfig = XAxiVdma_LookupConfig(VDMA_ID);
+	if (!vdmaConfig)
+	{
+		xil_printf("No video DMA found for ID %d\r\n", VDMA_ID);
+		return;
+	}
+	Status = XAxiVdma_CfgInitialize(&vdma, vdmaConfig, vdmaConfig->BaseAddress);
+	if (Status != XST_SUCCESS)
+	{
+		xil_printf("VDMA Configuration Initialization failed %d\r\n", Status);
+		return;
+	}
+
+	/*
+	 * Initialize the Display controller and start it
+	 */
+	Status = DisplayInitialize(&dispCtrl, &vdma, HDMI_OUT_VTC_ID, DYNCLK_BASEADDR, pFrames, DEMO_STRIDE);
+	if (Status != XST_SUCCESS)
+	{
+		xil_printf("Display Ctrl initialization failed during demo initialization%d\r\n", Status);
+		return;
+	}
+	Status = DisplayStart(&dispCtrl);
+	if (Status != XST_SUCCESS)
+	{
+		xil_printf("Couldn't start display during demo initialization%d\r\n", Status);
+		return;
+	}
+
+	/*
+	 * Initialize the Interrupt controller and start it.
+	 */
+	Status = fnInitInterruptController(&intc);
+	if(Status != XST_SUCCESS) {
+		xil_printf("Error initializing interrupts");
+		return;
+	}
+	fnEnableInterrupts(&intc, &ivt[0], sizeof(ivt)/sizeof(ivt[0]));
+
+	/*
+	 * Initialize the Video Capture device
+	 */
+	Status = VideoInitialize(&videoCapt, &intc, &vdma, HDMI_IN_GPIO_ID, HDMI_IN_VTC_ID, HDMI_IN_VTC_IRPT_ID, pFrames, DEMO_STRIDE, DEMO_START_ON_DET);
+	if (Status != XST_SUCCESS)
+	{
+		xil_printf("Video Ctrl initialization failed during demo initialization%d\r\n", Status);
+		return;
+	}
+
+	/*
+	 * Set the Video Detect callback to trigger the menu to reset, displaying the new detected resolution
+	 */
+	VideoSetCallback(&videoCapt, DemoISR, &fRefresh);
+
+	return;
+}
+
+void Run()
+{
+	int nextFrame = 0;
+	char userInput = 0;
+
+	/* Flush UART FIFO */
+	while (XUartPs_IsReceiveData(UART_BASEADDR))
+	{
+		XUartPs_ReadReg(UART_BASEADDR, XUARTPS_FIFO_OFFSET);
+	}
+
+	while (userInput != 'q')
+	{
+		fRefresh = 0;
+		StartMenu();
+
+		/* Wait for data on UART */
+		while (!XUartPs_IsReceiveData(UART_BASEADDR) && !fRefresh)
+		{}
+
+		/* Store the first character in the UART receive FIFO and echo it */
+		if (XUartPs_IsReceiveData(UART_BASEADDR))
+		{
+			userInput = XUartPs_ReadReg(UART_BASEADDR, XUARTPS_FIFO_OFFSET);
+			xil_printf("%c", userInput);
+		}
+		else  //Refresh triggered by video detect interrupt
+		{
+			userInput = 'r';
+		}
+
+		switch (userInput)
+		{
+		default :
+			xil_printf("\n\rInvalid Selection");
+			TimerDelay(500000);
+		}
+	}
+
+	return;
+}
+
+void StartMenu()
+{
+	xil_printf("\x1B[H"); //Set cursor to top left of terminal
+	xil_printf("\x1B[2J"); //Clear terminal
+	xil_printf("**************************************************\n\r");
+	xil_printf("*                ZYBO Video Demo                 *\n\r");
+	xil_printf("**************************************************\n\r");
+	xil_printf("*Display Resolution: %28s*\n\r", dispCtrl.vMode.label);
+	printf("*Display Pixel Clock Freq. (MHz): %15.3f*\n\r", dispCtrl.pxlFreq);
+	xil_printf("*Display Frame Index: %27d*\n\r", dispCtrl.curFrame);
+	if (videoCapt.state == VIDEO_DISCONNECTED) xil_printf("*Video Capture Resolution: %22s*\n\r", "!HDMI UNPLUGGED!");
+	else xil_printf("*Video Capture Resolution: %17dx%-4d*\n\r", videoCapt.timing.HActiveVideo, videoCapt.timing.VActiveVideo);
+	xil_printf("*Video Frame Index: %29d*\n\r", videoCapt.curFrame);
+	xil_printf("**************************************************\n\r");
+	xil_printf("\n\r");
+	xil_printf("1 - Change Display Resolution\n\r");
+	xil_printf("2 - Change Display Framebuffer Index\n\r");
+	xil_printf("3 - Print Blended Test Pattern to Display Framebuffer\n\r");
+	xil_printf("4 - Print Color Bar Test Pattern to Display Framebuffer\n\r");
+	xil_printf("5 - Start/Stop Video stream into Video Framebuffer\n\r");
+	xil_printf("6 - Change Video Framebuffer Index\n\r");
+	xil_printf("7 - Grab Video Frame and invert colors\n\r");
+	xil_printf("8 - Grab Video Frame and scale to Display resolution\n\r");
+	xil_printf("q - Quit\n\r");
+	xil_printf("\n\r");
+	xil_printf("\n\r");
+	xil_printf("Enter a selection:");
+}
+
+void DemoChangeRes()
+{
+	int fResSet = 0;
+	int status;
+	char userInput = 0;
+
+	/* Flush UART FIFO */
+	while (XUartPs_IsReceiveData(UART_BASEADDR))
+	{
+		XUartPs_ReadReg(UART_BASEADDR, XUARTPS_FIFO_OFFSET);
+	}
+
+	while (!fResSet)
+	{
+		DemoCRMenu();
+
+		/* Wait for data on UART */
+		while (!XUartPs_IsReceiveData(UART_BASEADDR))
+		{}
+
+		/* Store the first character in the UART recieve FIFO and echo it */
+		userInput = XUartPs_ReadReg(UART_BASEADDR, XUARTPS_FIFO_OFFSET);
+		xil_printf("%c", userInput);
+		status = XST_SUCCESS;
+		switch (userInput)
+		{
+		case '1':
+			status = DisplayStop(&dispCtrl);
+			DisplaySetMode(&dispCtrl, &VMODE_640x480);
+			DisplayStart(&dispCtrl);
+			fResSet = 1;
+			break;
+		case '2':
+			status = DisplayStop(&dispCtrl);
+			DisplaySetMode(&dispCtrl, &VMODE_800x600);
+			DisplayStart(&dispCtrl);
+			fResSet = 1;
+			break;
+		case '3':
+			status = DisplayStop(&dispCtrl);
+			DisplaySetMode(&dispCtrl, &VMODE_1280x720);
+			DisplayStart(&dispCtrl);
+			fResSet = 1;
+			break;
+		case '4':
+			status = DisplayStop(&dispCtrl);
+			DisplaySetMode(&dispCtrl, &VMODE_1280x1024);
+			DisplayStart(&dispCtrl);
+			fResSet = 1;
+			break;
+		case '5':
+			status = DisplayStop(&dispCtrl);
+			DisplaySetMode(&dispCtrl, &VMODE_1600x900);
+			DisplayStart(&dispCtrl);
+			fResSet = 1;
+			break;
+		case '6':
+			status = DisplayStop(&dispCtrl);
+			DisplaySetMode(&dispCtrl, &VMODE_1920x1080);
+			DisplayStart(&dispCtrl);
+			fResSet = 1;
+			break;
+		case 'q':
+			fResSet = 1;
+			break;
+		default :
+			xil_printf("\n\rInvalid Selection");
+			TimerDelay(500000);
+		}
+		if (status == XST_DMA_ERROR)
+		{
+			xil_printf("\n\rWARNING: AXI VDMA Error detected and cleared\n\r");
+		}
+	}
+}
+
+void SimonSays_DisplayColor(u8 *frame, u32 width, u32 height, u32 stride, int color){
+	u32 xcoi, ycoi;
+	u32 iPixelAddr;
+
+	switch (color){
+	case 0:
+		for(xcoi = 0; xcoi < (width*3); xcoi+=3){
+			iPixelAddr = xcoi;
+			for(ycoi = 0; ycoi < height; ycoi++){
+				frame[iPixelAddr] = 0;
+				frame[iPixelAddr+1] = 0;
+				frame[iPixelAddr+2] = 255;
+				iPixelAddr += stride;
+			}
+		};
+		Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
+		break;
+	case 1:
+		for(xcoi = 0; xcoi < (width*3); xcoi+=3){
+			iPixelAddr = xcoi;
+			for(ycoi = 0; ycoi < height; ycoi++){
+				frame[iPixelAddr] = 0;
+				frame[iPixelAddr+1] = 255;
+				frame[iPixelAddr+2] = 0;
+				iPixelAddr += stride;
+			}
+		}
+		Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
+		break;
+	case 2:
+		for(xcoi = 0; xcoi < (width*3); xcoi+=3){
+			iPixelAddr = xcoi;
+			for(ycoi = 0; ycoi < height; ycoi++){
+				frame[iPixelAddr] = 255;
+				frame[iPixelAddr+1] = 0;
+				frame[iPixelAddr+2] = 0;
+				iPixelAddr += stride;
+			}
+		}
+		Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
+		break;
+	}
+}
+
+void DemoISR(void *callBackRef, void *pVideo)
+{
+	char *data = (char *) callBackRef;
+	*data = 1; //set fRefresh to 1
+}
+
+

@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2016.2 (64-bit)
+# SW Build 1577090 on Thu Jun  2 16:32:40 MDT 2016
+# IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+# Start of session at: Fri Apr 26 21:41:48 2024
+# Process ID: 1640
+# Current directory: C:/Users/cabra/Desktop/New folder (5)/vivado_proj
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent2760 C:\Users\cabra\Desktop\New folder (5)\vivado_proj\zybo-z7-10-hdmi.xpr
+# Log file: C:/Users/cabra/Desktop/New folder (5)/vivado_proj/vivado.log
+# Journal file: C:/Users/cabra/Desktop/New folder (5)/vivado_proj\vivado.jou
+#-----------------------------------------------------------
+start_gui
+exit
+INFO: [Common 17-206] Exiting Vivado at Fri Apr 26 21:42:06 2024...

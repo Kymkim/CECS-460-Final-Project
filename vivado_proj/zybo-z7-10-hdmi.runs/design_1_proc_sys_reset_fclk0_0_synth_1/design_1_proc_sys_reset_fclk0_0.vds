@@ -1,0 +1,17 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Thu Jan 23 16:30:50 2020
+# Process ID: 26504
+# Current directory: D:/Github/zybo-z7-10-hdmi/proj/zybo-z7-10-hdmi.runs/design_1_proc_sys_reset_fclk0_0_synth_1
+# Command line: vivado.exe -log design_1_proc_sys_reset_fclk0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_proc_sys_reset_fclk0_0.tcl
+# Log file: D:/Github/zybo-z7-10-hdmi/proj/zybo-z7-10-hdmi.runs/design_1_proc_sys_reset_fclk0_0_synth_1/design_1_proc_sys_reset_fclk0_0.vds
+# Journal file: D:/Github/zybo-z7-10-hdmi/proj/zybo-z7-10-hdmi.runs/design_1_proc_sys_reset_fclk0_0_synth_1\vivado.jou
+#-----------------------------------------------------------
+Sourcing tcl script 'C:/Users/arthur/AppData/Roaming/Xilinx/Vivado/Vivado_init.tcl'
+0 Beta devices matching pattern found, 0 enabled.
+INFO: [Common 17-1463] Init.tcl in C:/Users/arthur/AppData/Roaming/Xilinx/Vivado/init.tcl is not used. Vivado_init.tcl is already sourced.
+source design_1_proc_sys_reset_fclk0_0.tcl -notrace
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP design_1_proc_sys_reset_fclk0_0, cache-ID = 640ed464f2973ee7.
+INFO: [Common 17-206] Exiting Vivado at Thu Jan 23 16:31:05 2020...
