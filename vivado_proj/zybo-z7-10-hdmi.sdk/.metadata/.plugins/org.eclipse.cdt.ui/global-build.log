@@ -5783,3 +5783,1106 @@ make pre-build main-build
 a9-linaro-pre-build-step
 ' '
 make: Nothing to be done for `main-build'.
+16:51:38 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'Run':
+../src/video_demo.c:179:6: warning: unused variable 'nextFrame' [-Wunused-variable]
+  int nextFrame = 0;
+      ^~~~~~~~~
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  64480	   2888	18688176	18755544	11e2fd8	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+16:51:45 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'Run':
+../src/video_demo.c:179:6: warning: unused variable 'nextFrame' [-Wunused-variable]
+  int nextFrame = 0;
+      ^~~~~~~~~
+../src/video_demo.c: In function 'FillColor':
+../src/video_demo.c:303:2: error: case label not within a switch statement
+  case 4:
+  ^~~~
+../src/video_demo.c:314:5: error: break statement not within loop or switch
+     break;
+     ^~~~~
+../src/video_demo.c: At top level:
+../src/video_demo.c:316:1: error: expected identifier or '(' before '}' token
+ }
+ ^
+make: *** [src/video_demo.o] Error 1
+16:52:07 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'Run':
+../src/video_demo.c:179:6: warning: unused variable 'nextFrame' [-Wunused-variable]
+  int nextFrame = 0;
+      ^~~~~~~~~
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  64672	   2888	18688176	18755736	11e3098	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+16:52:13 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'Run':
+../src/video_demo.c:179:6: warning: unused variable 'nextFrame' [-Wunused-variable]
+  int nextFrame = 0;
+      ^~~~~~~~~
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  64672	   2888	18688176	18755736	11e3098	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+16:53:28 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'Run':
+../src/video_demo.c:179:6: warning: unused variable 'nextFrame' [-Wunused-variable]
+  int nextFrame = 0;
+      ^~~~~~~~~
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:243:6: warning: unused variable 'SeqLen' [-Wunused-variable]
+  int SeqLen = 10;
+      ^~~~~~
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  64672	   2888	18688176	18755736	11e3098	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+16:53:34 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:242:6: warning: unused variable 'SeqLen' [-Wunused-variable]
+  int SeqLen = 10;
+      ^~~~~~
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  64672	   2888	18688176	18755736	11e3098	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+16:56:23 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:243:6: warning: variable 'sequence' set but not used [-Wunused-but-set-variable]
+  int sequence[SeqLen];
+      ^~~~~~~~
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  64844	   2888	18688176	18755908	11e3144	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+16:59:05 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:243:6: warning: variable 'sequence' set but not used [-Wunused-but-set-variable]
+  int sequence[SeqLen];
+      ^~~~~~~~
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65036	   2888	18688176	18756100	11e3204	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:00:37 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:260:8: warning: unused variable 'userInput' [-Wunused-variable]
+   char userInput = 0;
+        ^~~~~~~~~
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65100	   2888	18688176	18756164	11e3244	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:00:46 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:260:8: warning: unused variable 'userInput' [-Wunused-variable]
+   char userInput = 0;
+        ^~~~~~~~~
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65100	   2888	18688176	18756164	11e3244	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:01:23 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:260:8: warning: unused variable 'userInput' [-Wunused-variable]
+   char userInput = 0;
+        ^~~~~~~~~
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65100	   2888	18688176	18756164	11e3244	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:01:31 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65228	   2888	18688176	18756292	11e32c4	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:01:47 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65228	   2888	18688176	18756292	11e32c4	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:02:11 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65228	   2888	18688176	18756292	11e32c4	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:02:16 **** Incremental Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+17:02:39 **** Incremental Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+17:04:00 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65232	   2888	18688176	18756296	11e32c8	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:04:02 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+17:04:30 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65296	   2888	18688176	18756360	11e3308	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:04:32 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65296	   2888	18688176	18756360	11e3308	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:05:09 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65320	   2888	18688176	18756384	11e3320	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:05:30 **** Incremental Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+17:06:59 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:255:3: error: expected ';' before '}' token
+   }
+   ^
+make: *** [src/video_demo.o] Error 1
+17:07:09 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65576	   2888	18688176	18756640	11e3420	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:09:12 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:270:30: error: 'i' undeclared (first use in this function)
+   for(int p = 0; p < SeqLen; i++){
+                              ^
+../src/video_demo.c:270:30: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [src/video_demo.o] Error 1
+17:09:17 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65644	   2888	18688176	18756708	11e3464	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:09:34 **** Incremental Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+17:10:01 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65644	   2888	18688176	18756708	11e3464	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:10:24 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:261:2: error: expected ';' before 'int'
+  int round = 0;
+  ^~~
+../src/video_demo.c:266:20: warning: comparison between pointer and integer
+   for(int c = 0; c < round; c++){
+                    ^
+../src/video_demo.c:295:9: error: lvalue required as left operand of assignment
+   round += 2;
+         ^~
+../src/video_demo.c:297:13: warning: comparison between pointer and integer
+   if (round > SeqLen){
+             ^
+make: *** [src/video_demo.o] Error 1
+17:10:27 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65708	   2888	18688176	18756772	11e34a4	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:10:34 **** Incremental Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+17:10:53 **** Incremental Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+17:11:52 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65708	   2888	18688176	18756772	11e34a4	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:12:14 **** Incremental Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+17:12:43 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:252:19: error: void value not ignored as it ought to be
+    sequence[i] = (srand(time(NULL)) % 5);
+                   ^~~~~~~~~~~~~~~~~
+make: *** [src/video_demo.o] Error 1
+17:13:30 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:252:25: error: too few arguments to function 'time'
+    sequence[i] = (srand(time()) % 5);
+                         ^~~~
+In file included from c:\xilinx\sdk\2018.2\gnu\aarch32\nt\gcc-arm-none-eabi\arm-none-eabi\libc\usr\include\stdlib.h:11:0,
+                 from ../src/video_demo.h:32,
+                 from ../src/video_demo.c:28:
+c:\xilinx\sdk\2018.2\gnu\aarch32\nt\gcc-arm-none-eabi\arm-none-eabi\libc\usr\include\time.h:55:11: note: declared here
+ time_t    _EXFUN(time,     (time_t *_timer));
+           ^
+make: *** [src/video_demo.o] Error 1
+17:14:45 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:252:19: error: void value not ignored as it ought to be
+    sequence[i] = (srand(time(NULL)) % 5);
+                   ^~~~~~~~~~~~~~~~~
+make: *** [src/video_demo.o] Error 1
+17:15:27 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:252:19: error: void value not ignored as it ought to be
+    sequence[i] = (srand(time(0)) % 5);
+                   ^~~~~~~~~~~~~~
+make: *** [src/video_demo.o] Error 1
+17:16:25 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65708	   2888	18688176	18756772	11e34a4	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:16:34 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:248:2: error: expected ';' before 'int'
+  int SeqLen = 20;
+  ^~~
+../src/video_demo.c:249:15: error: 'SeqLen' undeclared (first use in this function)
+  int sequence[SeqLen];
+               ^~~~~~
+../src/video_demo.c:249:15: note: each undeclared identifier is reported only once for each function it appears in
+../src/video_demo.c:249:6: warning: unused variable 'sequence' [-Wunused-variable]
+  int sequence[SeqLen];
+      ^~~~~~~~
+make: *** [src/video_demo.o] Error 1
+17:16:36 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+c:/xilinx/sdk/2018.2/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../arm-none-eabi/libc/usr/lib/v7-a/fpv3/hard\libc.a(lib_a-gettimeofdayr.o): In function `_gettimeofday_r':
+/proj/esdt_sdk/gnu_abe/ABE/builds/lin/arm/arm-linux/snapshots/newlib-newlib-2_4_0/newlib/libc/reent/gettimeofdayr.c:71: undefined reference to `_gettimeofday'
+collect2.exe: error: ld returned 1 exit status
+make: *** [Zybo-Z7-10-HDMI.elf] Error 1
+17:16:59 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:245:13: error: 'NUL' undeclared (first use in this function); did you mean 'NULL'?
+  srand(time(NUL));
+             ^~~
+             NULL
+../src/video_demo.c:245:13: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [src/video_demo.o] Error 1
+17:17:02 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+c:/xilinx/sdk/2018.2/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../arm-none-eabi/libc/usr/lib/v7-a/fpv3/hard\libc.a(lib_a-gettimeofdayr.o): In function `_gettimeofday_r':
+/proj/esdt_sdk/gnu_abe/ABE/builds/lin/arm/arm-linux/snapshots/newlib-newlib-2_4_0/newlib/libc/reent/gettimeofdayr.c:71: undefined reference to `_gettimeofday'
+collect2.exe: error: ld returned 1 exit status
+make: *** [Zybo-Z7-10-HDMI.elf] Error 1
+17:19:16 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65708	   2888	18688176	18756772	11e34a4	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+17:19:26 **** Incremental Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for `main-build'.
+19:56:55 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65712	   2888	18688176	18756776	11e34a8	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+19:58:23 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:270:3: error: expected ';' before 'for'
+   for(int c = 0; c < round; c++){
+   ^~~
+../src/video_demo.c:294:4: error: 'userInput' undeclared (first use in this function)
+    userInput = XUartPs_ReadReg(UART_BASEADDR, XUARTPS_FIFO_OFFSET);
+    ^~~~~~~~~
+../src/video_demo.c:294:4: note: each undeclared identifier is reported only once for each function it appears in
+../src/video_demo.c:247:6: warning: variable 'sequence' set but not used [-Wunused-but-set-variable]
+  int sequence[SeqLen];
+      ^~~~~~~~
+make: *** [src/video_demo.o] Error 1
+19:58:27 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65788	   2888	18688176	18756852	11e34f4	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+19:59:20 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65788	   2888	18688176	18756852	11e34f4	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+19:59:26 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65788	   2888	18688176	18756852	11e34f4	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+20:00:43 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:277:3: error: expected ';' before '}' token
+   }
+   ^
+make: *** [src/video_demo.o] Error 1
+20:00:46 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65812	   2888	18688176	18756876	11e350c	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+20:01:44 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:284:8: warning: unused variable 'userGuess' [-Wunused-variable]
+   char userGuess[SeqLen/2];
+        ^~~~~~~~~
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  66004	   2888	18688176	18757068	11e35cc	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+20:02:42 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:284:8: warning: variable 'userGuess' set but not used [-Wunused-but-set-variable]
+   char userGuess[SeqLen/2];
+        ^~~~~~~~~
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  66004	   2888	18688176	18757068	11e35cc	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+20:05:34 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:305:5: error: expected ';' before 'break'
+     break;
+     ^~~~~
+make: *** [src/video_demo.o] Error 1
+20:05:41 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  65892	   2888	18688176	18756956	11e355c	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+20:06:53 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:267:2: error: expected ';' before 'while'
+  while (!XUartPs_IsReceiveData(UART_BASEADDR) && !fRefresh){
+  ^~~~~
+../src/video_demo.c:407:1: error: expected declaration or statement at end of input
+ }
+ ^
+../src/video_demo.c:262:6: warning: unused variable 'gameStop' [-Wunused-variable]
+  int gameStop = 0;
+      ^~~~~~~~
+../src/video_demo.c:261:6: warning: unused variable 'round' [-Wunused-variable]
+  int round = 0;
+      ^~~~~
+../src/video_demo.c:247:6: warning: variable 'sequence' set but not used [-Wunused-but-set-variable]
+  int sequence[SeqLen];
+      ^~~~~~~~
+make: *** [src/video_demo.o] Error 1
+20:06:57 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:407:1: error: expected declaration or statement at end of input
+ }
+ ^
+At top level:
+../src/video_demo.c:403:6: warning: 'DemoISR' defined but not used [-Wunused-function]
+ void DemoISR(void *callBackRef, void *pVideo)
+      ^~~~~~~
+../src/video_demo.c:321:6: warning: 'FillColor' defined but not used [-Wunused-function]
+ void FillColor(u8 *frame, u32 width, u32 height, u32 stride, int color){
+      ^~~~~~~~~
+make: *** [src/video_demo.o] Error 1
+20:07:13 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  66004	   2888	18688176	18757068	11e35cc	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+20:07:53 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  66052	   2888	18688176	18757116	11e35fc	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+20:08:20 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+../src/video_demo.c: In function 'RunSimonSays':
+../src/video_demo.c:310:5: error: expected ';' before 'break'
+     break;
+     ^~~~~
+make: *** [src/video_demo.o] Error 1
+20:08:21 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  66116	   2888	18688176	18757180	11e363c	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '
+20:09:09 **** Auto Build of configuration Debug for project Zybo-Z7-10-HDMI ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/video_demo.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/video_demo.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/video_demo.d" -MT"src/video_demo.o" -o "src/video_demo.o" "../src/video_demo.c"
+'Finished building: ../src/video_demo.c'
+' '
+'Building target: Zybo-Z7-10-HDMI.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/lib -o "Zybo-Z7-10-HDMI.elf"  ./src/video_capture/video_capture.o  ./src/timer_ps/timer_ps.o  ./src/intc/intc.o  ./src/dynclk/dynclk.o  ./src/display_ctrl/display_ctrl.o  ./src/video_demo.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: Zybo-Z7-10-HDMI.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size Zybo-Z7-10-HDMI.elf  |tee "Zybo-Z7-10-HDMI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  66140	   2888	18688176	18757204	11e3654	Zybo-Z7-10-HDMI.elf
+'Finished building: Zybo-Z7-10-HDMI.elf.size'
+' '

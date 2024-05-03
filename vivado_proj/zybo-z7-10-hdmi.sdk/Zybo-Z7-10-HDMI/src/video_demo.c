@@ -176,7 +176,6 @@ void Initialize()
 }
 void Run()
 {
-	int nextFrame = 0;
 	char userInput = 0;
 
 	/* Flush UART FIFO */
@@ -231,7 +230,7 @@ void StartMenu()
 	xil_printf("*                SIMON SAYS GAME                 *\n\r");
 	xil_printf("**************************************************\n\r");
 	xil_printf("\n\r");
-	xil_printf("1 - Play Simon Says");
+	xil_printf("1 - Play Simon Says\n\r");
 	xil_printf("q - Quit\n\r");
 	xil_printf("\n\r");
 	xil_printf("\n\r");
@@ -239,11 +238,89 @@ void StartMenu()
 }
 
 void RunSimonSays(){
-	int colorSeq[] = {0, 1, 2, 3, 4};
-	for(int i = 0; i < 5; i++){
-		FillColor(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, colorSeq[i]);
-		TimerDelay(500000*2);
+
+	xil_printf("\x1B[H"); //Set cursor to top left of terminal
+	xil_printf("\x1B[2J"); //Clear terminal
+
+	//Up to 10 sequence
+	int SeqLen = 20;
+	int sequence[SeqLen];
+
+	//Generate random sequence
+	for(int i = 0; i < SeqLen; i++){
+		if ((i % 2) == 0){
+			sequence[i] = (rand() % 5);
+		}else{
+			sequence[i] = 5;
+		}
 	}
+
+	FillColor(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 5);
+
+
+	int round = 0;
+	int gameStop = 0;
+
+	xil_printf("Press Enter To Continue\n");
+
+	/* Wait for data on UART */
+	while (!XUartPs_IsReceiveData(UART_BASEADDR) && !fRefresh){}
+
+	while(gameStop == 0){
+
+		xil_printf("\x1B[H"); //Set cursor to top left of terminal
+		xil_printf("\x1B[2J"); //Clear terminal
+		xil_printf("Round: ", round + 1);
+
+		xil_printf("Displaying Colors...");
+		//Show The Colors
+		for(int c = 0; c < round; c++){
+			FillColor(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, sequence[c]);
+			TimerDelay(500000*2);
+		}
+		xil_printf("Displaying Color Done! What is the sequence?...");
+		xil_printf("0 = Red, 1= Green, 2=Blue, 3=Violet, 4=Yellow");
+
+		for(int p = 0; p < SeqLen; p++){
+			xil_printf("%d", sequence[p] + ", ");
+		}
+
+
+		for(int a = 0; a < SeqLen; a+=2){
+			int userInput = 0;
+			/* Flush UART FIFO */
+			while (XUartPs_IsReceiveData(UART_BASEADDR))
+			{
+				XUartPs_ReadReg(UART_BASEADDR, XUARTPS_FIFO_OFFSET);
+			}
+
+			/* Wait for data on UART */
+			while (!XUartPs_IsReceiveData(UART_BASEADDR) && !fRefresh){}
+
+			/* Store the first character in the UART receive FIFO and echo it */
+			if (XUartPs_IsReceiveData(UART_BASEADDR))
+			{
+				userInput = XUartPs_ReadReg(UART_BASEADDR, XUARTPS_FIFO_OFFSET);
+				xil_printf("%c", userInput);
+			}
+
+			if (userInput != sequence[a]){
+				xil_printf("Wrong Color!");
+				gameStop = 1;
+				break;
+			}
+		}
+
+
+		round += 2;
+
+		if (round > SeqLen){
+			gameStop = 1;
+		}
+	}
+
+	xil_printf("You lasted till round ", round);
+	TimerDelay(500000*2);
 }
 
 void FillColor(u8 *frame, u32 width, u32 height, u32 stride, int color){
@@ -287,7 +364,45 @@ void FillColor(u8 *frame, u32 width, u32 height, u32 stride, int color){
 		}
 		Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
 		break;
+	case 3:
+			for(xcoi = 0; xcoi < (width*3); xcoi+=3){
+				iPixelAddr = xcoi;
+				for(ycoi = 0; ycoi < height; ycoi++){
+					frame[iPixelAddr] = 255;
+					frame[iPixelAddr+1] = 0;
+					frame[iPixelAddr+2] = 255;
+					iPixelAddr += stride;
+				}
+			}
+			Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
+			break;
+	case 4:
+			for(xcoi = 0; xcoi < (width*3); xcoi+=3){
+				iPixelAddr = xcoi;
+				for(ycoi = 0; ycoi < height; ycoi++){
+					frame[iPixelAddr] = 255;
+					frame[iPixelAddr+1] = 255;
+					frame[iPixelAddr+2] = 0;
+					iPixelAddr += stride;
+				}
+			}
+			Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
+			break;
+	case 5:
+			for(xcoi = 0; xcoi < (width*3); xcoi+=3){
+				iPixelAddr = xcoi;
+				for(ycoi = 0; ycoi < height; ycoi++){
+					frame[iPixelAddr] = 0;
+					frame[iPixelAddr+1] = 0;
+					frame[iPixelAddr+2] = 0;
+					iPixelAddr += stride;
+				}
+			}
+			Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
+			break;
 	}
+
+
 }
 
 void DemoISR(void *callBackRef, void *pVideo)
