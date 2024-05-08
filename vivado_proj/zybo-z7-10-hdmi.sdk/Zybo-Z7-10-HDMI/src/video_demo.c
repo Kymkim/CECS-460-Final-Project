@@ -1,26 +1,3 @@
-/************************************************************************/
-/*																		*/
-/*	video_demo.c	--	ZYBO Video demonstration 						*/
-/*																		*/
-/************************************************************************/
-/*	Author: Sam Bobrowicz												*/
-/*	Copyright 2015, Digilent Inc.										*/
-/************************************************************************/
-/*  Module Description: 												*/
-/*																		*/
-/*		This file contains code for running a demonstration of the		*/
-/*		Video input and output capabilities on the ZYBO. It is a good	*/
-/*		example of how to properly use the display_ctrl and				*/
-/*		video_capture drivers.											*/
-/*																		*/
-/*																		*/
-/************************************************************************/
-/*  Revision History:													*/
-/* 																		*/
-/*		11/25/2015(SamB): Created										*/
-/*																		*/
-/************************************************************************/
-
 /* ------------------------------------------------------------ */
 /*				Include File Definitions						*/
 /* ------------------------------------------------------------ */
@@ -38,6 +15,7 @@
 #include "xil_cache.h"
 #include "timer_ps/timer_ps.h"
 #include "xparameters.h"
+#include "xscutimer.h"
 
 /*
  * XPAR redefines
@@ -170,7 +148,7 @@ void Initialize()
 	 */
 	VideoSetCallback(&videoCapt, DemoISR, &fRefresh);
 
-	FillColor(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 1);
+	FillColor3x3(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 1);
 
 	return;
 }
@@ -207,11 +185,10 @@ void Run()
 		switch (userInput)
 		{
 		case '1':
-			RunSimonSays();
+			RunSimonSays2x2();
 			break;
-		case 'q':
-			break;
-		case 'r':
+		case '2':
+			RunSimonSays3x3();
 			break;
 		default :
 			xil_printf("\n\rInvalid Selection");
@@ -230,14 +207,15 @@ void StartMenu()
 	xil_printf("*                SIMON SAYS GAME                 *\n\r");
 	xil_printf("**************************************************\n\r");
 	xil_printf("\n\r");
-	xil_printf("1 - Play Simon Says\n\r");
+	xil_printf("1 - Play Simon Says 2X2\n\r");
+	xil_printf("2 - Play Simon Says 3X3\n\r");
 	xil_printf("q - Quit\n\r");
 	xil_printf("\n\r");
 	xil_printf("\n\r");
 	xil_printf("Enter a selection:");
 }
 
-void RunSimonSays(){
+void RunSimonSays2x2(){
 
 	xil_printf("\x1B[H"); //Set cursor to top left of terminal
 	xil_printf("\x1B[2J"); //Clear terminal
@@ -245,23 +223,26 @@ void RunSimonSays(){
 	//Up to 10 sequence
 	int SeqLen = 20;
 	int sequence[SeqLen];
+	int guessSeq[SeqLen];
 
 	//Generate random sequence
 	for(int i = 0; i < SeqLen; i++){
 		if ((i % 2) == 0){
-			sequence[i] = (rand() % 5);
+			sequence[i] = (rand() % 4);
 		}else{
-			sequence[i] = 5;
+			sequence[i] = 4;
 		}
+		guessSeq[i] = 0;
 	}
 
-	FillColor(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 5);
+	FillColor2x2(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 4);
 
 
-	int round = 0;
+	int round = 1;
 	int gameStop = 0;
 
-	xil_printf("Press Enter To Continue\n");
+	xil_printf("\n\rRules: Repeat the pattern shown in the screen!");
+	xil_printf("\n\rPress Enter To Continue\n");
 
 	/* Wait for data on UART */
 	while (!XUartPs_IsReceiveData(UART_BASEADDR) && !fRefresh){}
@@ -270,29 +251,28 @@ void RunSimonSays(){
 
 		xil_printf("\x1B[H"); //Set cursor to top left of terminal
 		xil_printf("\x1B[2J"); //Clear terminal
-		xil_printf("Round: ", round + 1);
+
+		FillColor2x2(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 4);
 
 		xil_printf("Displaying Colors...");
 		//Show The Colors
-		for(int c = 0; c < round; c++){
-			FillColor(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, sequence[c]);
+		for(int c = 0; c < round + 1; c++){
+			FillColor2x2(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, sequence[c]);
 			TimerDelay(500000*2);
 		}
-		xil_printf("Displaying Color Done! What is the sequence?...");
-		xil_printf("0 = Red, 1= Green, 2=Blue, 3=Violet, 4=Yellow");
-
-		for(int p = 0; p < SeqLen; p++){
-			xil_printf("%d", sequence[p] + ", ");
-		}
+		xil_printf("\n\rDisplaying Color Done! What is the sequence? (MAKE SURE ALL CAPS)...");
+		xil_printf("\n\rR = Red, G= Green, B=Blue, Y=Yellow\n\r");
 
 
-		for(int a = 0; a < SeqLen; a+=2){
-			int userInput = 0;
+		for(int a = 0; a < round + 1; a+=2){
+			char userInput = 0;
 			/* Flush UART FIFO */
 			while (XUartPs_IsReceiveData(UART_BASEADDR))
 			{
 				XUartPs_ReadReg(UART_BASEADDR, XUARTPS_FIFO_OFFSET);
 			}
+
+			fRefresh = 0;
 
 			/* Wait for data on UART */
 			while (!XUartPs_IsReceiveData(UART_BASEADDR) && !fRefresh){}
@@ -304,106 +284,489 @@ void RunSimonSays(){
 				xil_printf("%c", userInput);
 			}
 
-			if (userInput != sequence[a]){
-				xil_printf("Wrong Color!");
+			switch(userInput)
+			{
+				case 'R':
+					FillColor2x2(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 0);
+					guessSeq[a] = 0;
+					guessSeq[a+1] = 4;
+					break;
+				case 'G':
+					FillColor2x2(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 2);
+					guessSeq[a] = 2;
+					guessSeq[a+1] = 4;
+					break;
+				case 'B':
+					FillColor2x2(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 1);
+					guessSeq[a] = 1;
+					guessSeq[a+1] = 4;
+					break;
+				case 'Y':
+					FillColor2x2(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 3);
+					guessSeq[a] = 3;
+					guessSeq[a+1] = 4;
+					break;
+				default :
+					FillColor2x2(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 4);
+					guessSeq[a] = 4;
+					guessSeq[a+1] = 4;
+			}
+
+
+		}
+
+		xil_printf("\n\rChecking Answer! Please wait!");
+		for(int i = 0; i < round + 1; i++){
+			if(guessSeq[i] != sequence[i]){
+				xil_printf("\n\rYou Lose!!");
 				gameStop = 1;
 				break;
 			}
 		}
 
+		if (gameStop == 0){
+			xil_printf("\n\rCorrect!");
+		}
 
 		round += 2;
 
 		if (round > SeqLen){
 			gameStop = 1;
 		}
+
+		TimerDelay(500000*2);
 	}
 
-	xil_printf("You lasted till round ", round);
 	TimerDelay(500000*2);
 }
 
-void FillColor(u8 *frame, u32 width, u32 height, u32 stride, int color){
+void RunSimonSays3x3(){
+
+	xil_printf("\x1B[H"); //Set cursor to top left of terminal
+	xil_printf("\x1B[2J"); //Clear terminal
+
+	//Up to 10 sequence
+	int SeqLen = 20;
+	int sequence[SeqLen];
+	int guessSeq[SeqLen];
+
+	//Generate random sequence
+	for(int i = 0; i < SeqLen; i++){
+		if ((i % 2) == 0){
+			sequence[i] = (rand() % 7) + 1;
+		}else{
+			sequence[i] = 0;
+		}
+		guessSeq[i] = 0;
+	}
+
+	FillColor3x3(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 0);
+
+
+	int round = 1;
+	int gameStop = 0;
+
+	xil_printf("\n\rRules: Repeat the pattern shown in the screen!");
+	xil_printf("\n\rPress Enter To Continue\n");
+
+	/* Wait for data on UART */
+	while (!XUartPs_IsReceiveData(UART_BASEADDR) && !fRefresh){}
+
+	while(gameStop == 0){
+
+		xil_printf("\x1B[H"); //Set cursor to top left of terminal
+		xil_printf("\x1B[2J"); //Clear terminal
+
+		FillColor2x2(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 8);
+
+		xil_printf("Displaying Colors...");
+		//Show The Colors
+		for(int c = 0; c < round + 1; c++){
+			FillColor3x3(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, sequence[c]);
+			TimerDelay(500000*2);
+		}
+		xil_printf("\n\rDisplaying Color Done! What is the sequence? (MAKE SURE ALL CAPS)...");
+		xil_printf("\n\rUse Your Num Pad!\n\r");
+		xil_printf("\n\r 7 8 9 \n\r");
+		xil_printf("\n\r 4 5 6 \n\r");
+		xil_printf("\n\r 1 2 3 \n\r");
+
+
+		for(int a = 0; a < round + 1; a+=2){
+			char userInput = 0;
+			/* Flush UART FIFO */
+			while (XUartPs_IsReceiveData(UART_BASEADDR))
+			{
+				XUartPs_ReadReg(UART_BASEADDR, XUARTPS_FIFO_OFFSET);
+			}
+
+			fRefresh = 0;
+
+			/* Wait for data on UART */
+			while (!XUartPs_IsReceiveData(UART_BASEADDR) && !fRefresh){}
+
+			/* Store the first character in the UART receive FIFO and echo it */
+			if (XUartPs_IsReceiveData(UART_BASEADDR))
+			{
+				userInput = XUartPs_ReadReg(UART_BASEADDR, XUARTPS_FIFO_OFFSET);
+				xil_printf("%c", userInput);
+			}
+
+			switch(userInput)
+			{
+				case '7':
+					FillColor3x3(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 7);
+					guessSeq[a] = 7;
+					guessSeq[a+1] = 0;
+					break;
+				case '8':
+					FillColor3x3(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 8);
+					guessSeq[a] = 8;
+					guessSeq[a+1] = 0;
+					break;
+				case '9':
+					FillColor3x3(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 9);
+					guessSeq[a] = 9;
+					guessSeq[a+1] = 0;
+					break;
+				case '4':
+					FillColor3x3(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 4);
+					guessSeq[a] = 4;
+					guessSeq[a+1] = 0;
+					break;
+				case '5':
+					FillColor3x3(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 5);
+					guessSeq[a] = 5;
+					guessSeq[a+1] = 0;
+					break;
+				case '6':
+					FillColor3x3(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 6);
+					guessSeq[a] = 6;
+					guessSeq[a+1] = 0;
+					break;
+				case '1':
+					FillColor3x3(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 1);
+					guessSeq[a] = 1;
+					guessSeq[a+1] = 0;
+					break;
+				case '2':
+					FillColor3x3(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 2);
+					guessSeq[a] = 2;
+					guessSeq[a+1] = 0;
+					break;
+				case '3':
+					FillColor3x3(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 3);
+					guessSeq[a] = 3;
+					guessSeq[a+1] = 0;
+					break;
+				default :
+					FillColor3x3(dispCtrl.framePtr[dispCtrl.curFrame], dispCtrl.vMode.width, dispCtrl.vMode.height, dispCtrl.stride, 0);
+					guessSeq[a] = 0;
+					guessSeq[a+1] = 0;
+			}
+
+
+		}
+
+		xil_printf("\n\rChecking Answer! Please wait!");
+		for(int i = 0; i < round + 1; i++){
+			if(guessSeq[i] != sequence[i]){
+				xil_printf("\n\rYou Lose!!");
+				gameStop = 1;
+				break;
+			}
+		}
+
+		if (gameStop == 0){
+			xil_printf("\n\rCorrect!");
+		}
+
+		round += 2;
+
+		if (round > SeqLen){
+			gameStop = 1;
+		}
+
+		TimerDelay(500000*2);
+	}
+
+	TimerDelay(500000*2);
+}
+
+void FillColor3x3(u8 *frame, u32 width, u32 height, u32 stride, int color){
+	u32 xcoi, ycoi;
+	u32 iPixelAddr;
+
+	for(xcoi = 0; xcoi < (width*3); xcoi+=3){
+		iPixelAddr = xcoi;
+		for(ycoi = 0; ycoi < height; ycoi++){
+			if (xcoi < ((width*3) / 3)){
+				if (ycoi < (height/3)){
+					frame[iPixelAddr+2] = 214;
+					frame[iPixelAddr+1] = 48;
+					frame[iPixelAddr] = 38;
+					if (color != 7){
+						for (int i = 0; i < 3; i++){
+							frame[iPixelAddr + i] /= 2;
+						}
+					}
+				}else if (ycoi < ((height/3)*2)){
+					frame[iPixelAddr+2] = 254;
+					frame[iPixelAddr+1] = 224;
+					frame[iPixelAddr] = 138;
+					if (color != 4){
+						for (int i = 0; i < 3; i++){
+							frame[iPixelAddr + i] /= 2;
+						}
+					}
+				}else{
+					frame[iPixelAddr+2] = 166;
+					frame[iPixelAddr+1] = 218;
+					frame[iPixelAddr] = 106;
+					if (color != 1){
+						for (int i = 0; i < 3; i++){
+							frame[iPixelAddr + i] /= 2;
+						}
+					}
+				}
+			}else if (xcoi < ( ((width*3) / 3) * 2 )){
+				if (ycoi < (height/3)){
+					frame[iPixelAddr+2] = 244;
+					frame[iPixelAddr+1] = 108;
+					frame[iPixelAddr] = 66;
+					if (color != 8){
+						for (int i = 0; i < 3; i++){
+							frame[iPixelAddr + i] /= 2;
+						}
+					}
+				}else if (ycoi < ((height/3)*2)){
+					frame[iPixelAddr+2] = 254;
+					frame[iPixelAddr+1] = 254;
+					frame[iPixelAddr] = 192;
+					if (color != 5){
+						for (int i = 0; i < 3; i++){
+							frame[iPixelAddr + i] /= 2;
+						}
+					}
+				}else{
+					frame[iPixelAddr+2] = 102;
+					frame[iPixelAddr+1] = 188;
+					frame[iPixelAddr] = 98;
+					if (color != 2){
+						for (int i = 0; i < 3; i++){
+							frame[iPixelAddr + i] /= 2;
+						}
+					}
+				}
+			}else{
+				if (ycoi < (height/3)){
+					frame[iPixelAddr+2] = 254;
+					frame[iPixelAddr+1] = 174;
+					frame[iPixelAddr] = 98;
+					if (color != 9){
+						for (int i = 0; i < 3; i++){
+							frame[iPixelAddr + i] /= 2;
+						}
+					}
+				}else if (ycoi < ((height/3)*2)){
+					frame[iPixelAddr+2] = 218;
+					frame[iPixelAddr+1] = 238;
+					frame[iPixelAddr] = 138;
+					if (color != 6){
+						for (int i = 0; i < 3; i++){
+							frame[iPixelAddr + i] /= 2;
+						}
+					}
+				}else{
+					frame[iPixelAddr+2] = 26;
+					frame[iPixelAddr+1] = 152;
+					frame[iPixelAddr] = 80;
+					if (color != 3){
+						for (int i = 0; i < 3; i++){
+							frame[iPixelAddr + i] /= 2;
+						}
+					}
+				}
+			}
+			iPixelAddr += stride;
+		}
+	}
+
+
+	Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
+
+}
+
+void FillColor2x2(u8 *frame, u32 width, u32 height, u32 stride, int color){
 	u32 xcoi, ycoi;
 	u32 iPixelAddr;
 
 	switch (color){
+	//RED
 	case 0:
 		for(xcoi = 0; xcoi < (width*3); xcoi+=3){
 			iPixelAddr = xcoi;
 			for(ycoi = 0; ycoi < height; ycoi++){
-				frame[iPixelAddr] = 0;
-				frame[iPixelAddr+1] = 0;
-				frame[iPixelAddr+2] = 255;
+				if (xcoi < ((width*3) / 2)){
+					if (ycoi < (height/2)){
+						frame[iPixelAddr] = 0;
+						frame[iPixelAddr+1] = 0;
+						frame[iPixelAddr+2] = 255;
+					}else{
+						frame[iPixelAddr] = 55;
+						frame[iPixelAddr+1] = 0;
+						frame[iPixelAddr+2] = 0;
+					}
+				}else{
+					if (ycoi < (height/2)){
+						frame[iPixelAddr] = 0;
+						frame[iPixelAddr+1] = 55;
+						frame[iPixelAddr+2] = 0;
+					}else{
+						frame[iPixelAddr] = 0;
+						frame[iPixelAddr+1] = 55;
+						frame[iPixelAddr+2] = 55;
+					}
+				}
 				iPixelAddr += stride;
 			}
-		};
+		}
 		Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
 		break;
+
+	//BLUE
 	case 1:
 		for(xcoi = 0; xcoi < (width*3); xcoi+=3){
 			iPixelAddr = xcoi;
 			for(ycoi = 0; ycoi < height; ycoi++){
-				frame[iPixelAddr] = 0;
-				frame[iPixelAddr+1] = 255;
-				frame[iPixelAddr+2] = 0;
+				if (xcoi < ((width*3) / 2)){
+					if (ycoi < (height/2)){
+						frame[iPixelAddr] = 0;
+						frame[iPixelAddr+1] = 0;
+						frame[iPixelAddr+2] = 55;
+					}else{
+						frame[iPixelAddr] = 255;
+						frame[iPixelAddr+1] = 0;
+						frame[iPixelAddr+2] = 0;
+					}
+				}else{
+					if (ycoi < (height/2)){
+						frame[iPixelAddr] = 0;
+						frame[iPixelAddr+1] = 55;
+						frame[iPixelAddr+2] = 0;
+					}else{
+						frame[iPixelAddr] = 0;
+						frame[iPixelAddr+1] = 55;
+						frame[iPixelAddr+2] = 55;
+					}
+				}
 				iPixelAddr += stride;
 			}
 		}
 		Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
 		break;
+
+	//GREEN
 	case 2:
 		for(xcoi = 0; xcoi < (width*3); xcoi+=3){
 			iPixelAddr = xcoi;
 			for(ycoi = 0; ycoi < height; ycoi++){
-				frame[iPixelAddr] = 255;
-				frame[iPixelAddr+1] = 0;
-				frame[iPixelAddr+2] = 0;
+				if (xcoi < ((width*3) / 2)){
+					if (ycoi < (height/2)){
+						frame[iPixelAddr] = 0;
+						frame[iPixelAddr+1] = 0;
+						frame[iPixelAddr+2] = 55;
+					}else{
+						frame[iPixelAddr] = 55;
+						frame[iPixelAddr+1] = 0;
+						frame[iPixelAddr+2] = 0;
+					}
+				}else{
+					if (ycoi < (height/2)){
+						frame[iPixelAddr] = 0;
+						frame[iPixelAddr+1] = 255;
+						frame[iPixelAddr+2] = 0;
+					}else{
+						frame[iPixelAddr] = 0;
+						frame[iPixelAddr+1] = 55;
+						frame[iPixelAddr+2] = 55;
+					}
+				}
 				iPixelAddr += stride;
 			}
 		}
 		Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
 		break;
+
+	//YELLOW
 	case 3:
-			for(xcoi = 0; xcoi < (width*3); xcoi+=3){
-				iPixelAddr = xcoi;
-				for(ycoi = 0; ycoi < height; ycoi++){
-					frame[iPixelAddr] = 255;
-					frame[iPixelAddr+1] = 0;
-					frame[iPixelAddr+2] = 255;
-					iPixelAddr += stride;
+		for(xcoi = 0; xcoi < (width*3); xcoi+=3){
+			iPixelAddr = xcoi;
+			for(ycoi = 0; ycoi < height; ycoi++){
+				if (xcoi < ((width*3) / 2)){
+					if (ycoi < (height/2)){
+						frame[iPixelAddr] = 0;
+						frame[iPixelAddr+1] = 0;
+						frame[iPixelAddr+2] = 55;
+					}else{
+						frame[iPixelAddr] = 55;
+						frame[iPixelAddr+1] = 0;
+						frame[iPixelAddr+2] = 0;
+					}
+				}else{
+					if (ycoi < (height/2)){
+						frame[iPixelAddr] = 0;
+						frame[iPixelAddr+1] = 55;
+						frame[iPixelAddr+2] = 0;
+					}else{
+						frame[iPixelAddr] = 0;
+						frame[iPixelAddr+1] = 255;
+						frame[iPixelAddr+2] = 255;
+					}
 				}
+			iPixelAddr += stride;
 			}
-			Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
-			break;
+		}
+		Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
+		break;
+
+	//Empty
 	case 4:
-			for(xcoi = 0; xcoi < (width*3); xcoi+=3){
-				iPixelAddr = xcoi;
-				for(ycoi = 0; ycoi < height; ycoi++){
-					frame[iPixelAddr] = 255;
-					frame[iPixelAddr+1] = 255;
-					frame[iPixelAddr+2] = 0;
-					iPixelAddr += stride;
+		for(xcoi = 0; xcoi < (width*3); xcoi+=3){
+			iPixelAddr = xcoi;
+			for(ycoi = 0; ycoi < height; ycoi++){
+				if (xcoi < ((width*3) / 2)){
+					if (ycoi < (height/2)){
+						frame[iPixelAddr] = 0;
+						frame[iPixelAddr+1] = 0;
+						frame[iPixelAddr+2] = 55;
+					}else{
+						frame[iPixelAddr] = 55;
+						frame[iPixelAddr+1] = 0;
+						frame[iPixelAddr+2] = 0;
+					}
+				}else{
+					if (ycoi < (height/2)){
+						frame[iPixelAddr] = 0;
+						frame[iPixelAddr+1] = 55;
+						frame[iPixelAddr+2] = 0;
+					}else{
+						frame[iPixelAddr] = 0;
+						frame[iPixelAddr+1] = 55;
+						frame[iPixelAddr+2] = 55;
+					}
 				}
+			iPixelAddr += stride;
 			}
-			Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
-			break;
-	case 5:
-			for(xcoi = 0; xcoi < (width*3); xcoi+=3){
-				iPixelAddr = xcoi;
-				for(ycoi = 0; ycoi < height; ycoi++){
-					frame[iPixelAddr] = 0;
-					frame[iPixelAddr+1] = 0;
-					frame[iPixelAddr+2] = 0;
-					iPixelAddr += stride;
-				}
-			}
-			Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
-			break;
+		}
+		Xil_DCacheFlushRange((unsigned int) frame, DEMO_MAX_FRAME);
+		break;
 	}
 
 
 }
+
+
 
 void DemoISR(void *callBackRef, void *pVideo)
 {

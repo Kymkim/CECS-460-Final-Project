@@ -33,7 +33,9 @@ src/video_demo.o src/video_demo.o: ../src/video_demo.c \
  ../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include/xplatform_info.h \
  ../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include/xil_cache.h \
  ../src/timer_ps/timer_ps.h \
- ../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include/xparameters.h
+ ../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include/xparameters.h \
+ ../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include/xscutimer.h \
+ ../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include/xscutimer_hw.h
 
 ../src/video_demo.h:
 
@@ -108,3 +110,7 @@ src/video_demo.o src/video_demo.o: ../src/video_demo.c \
 ../src/timer_ps/timer_ps.h:
 
 ../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include/xparameters.h:
+
+../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include/xscutimer.h:
+
+../../Zybo-Z7-10-HDMI_bsp/ps7_cortexa9_0/include/xscutimer_hw.h:

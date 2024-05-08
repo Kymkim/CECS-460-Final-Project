@@ -57,8 +57,10 @@
 void Initialize();
 void Run();
 void StartMenu();
-void RunSimonSays();
-void FillColor(u8 *frame, u32 width, u32 height, u32 stride, int color);
+void RunSimonSays2x2();
+void FillColor2x2(u8 *frame, u32 width, u32 height, u32 stride, int color);
+void RunSimonSays3x3();
+void FillColor3x3(u8 *frame, u32 width, u32 height, u32 stride, int color);
 void DemoISR(void *callBackRef, void *pVideo);
 
 /* ------------------------------------------------------------ */
